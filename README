@@ -4,4 +4,14 @@ README
 - Čemu služi super() u konstruktoru?
 - Gdje radimo implementaciju apstraktnih metoda?
 - Razlika između this i super?
-- 
+- Kako prepoznajemo konstruktor unutar klase?
+- Kolika je razlika između call by value i call by reference?
+- Kako funkcionira compareTo()
+- Na koje sve načine možemo vršiti usporedbu objekata?
+- Poigrati se sa komparatorima; pokušati složiti polje senzora i sortirati po više parametara;
+- Što je sučelje?
+- Razlike između apstraktne klase i sučelja?
+- Možeš li imati privatne varijable u sučelju?
+- Kakav je to void tip podatka?
+- čemu služi @Override dekorator
+- rad sa poljima (kreiranje, spremanje, dohvaćanje)
