@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Validator {
 
 	public Validator() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static BigDecimal bigDecimal(Scanner scanner) {
