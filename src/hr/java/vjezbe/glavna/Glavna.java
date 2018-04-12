@@ -13,6 +13,7 @@ import hr.java.vjezbe.entitet.SenzorTemperature;
 import hr.java.vjezbe.entitet.SenzorVjetra;
 import hr.java.vjezbe.entitet.SenzorVlage;
 import hr.java.vjezbe.entitet.Zupanija;
+import hr.java.vjezbe.iznimke.VisokaTemperaturaException;
 import hr.java.vjezbe.utilities.Validator;
 
 public class Glavna {
@@ -56,7 +57,30 @@ public class Glavna {
 			}
 
 			if (mjernaPostaja instanceof RadioSondaznaMjernaPostaja) {
-				((RadioSondaznaMjernaPostaja) mjernaPostaja).povecajVisinu(((RadioSondaznaMjernaPostaja) mjernaPostaja).dohvatiVisinuPostaje());
+				((RadioSondaznaMjernaPostaja) mjernaPostaja)
+						.povecajVisinu(((RadioSondaznaMjernaPostaja) mjernaPostaja).dohvatiVisinuPostaje());
+			}
+		}
+
+		// generiranje
+		while (true) {
+			for (int i = 0; i < mjernePostaje.length; i++) {
+				Senzor[] senzori = mjernePostaje[i].dohvatiSenzore();
+				for (int j = 0; j < senzori.length; j++) {
+					Senzor senzor = senzori[j];
+					if (senzor instanceof SenzorTemperature) {
+						try {
+							((SenzorTemperature) senzor).generirajVrijednost();
+						} catch (VisokaTemperaturaException e) {
+							System.out.println("Pogresna temperatura postaje " + mjernePostaje[i].getNaziv());
+						}
+					}
+				}
+			}
+
+			try {
+				Thread.sleep(1 * 1000);
+			} catch (InterruptedException e) {
 			}
 		}
 
@@ -65,7 +89,7 @@ public class Glavna {
 	private static GeografskaTocka kreirajGeografskuTocku(Scanner scanner) {
 
 		System.out.println("Unesite X geo tocku");
-		BigDecimal x =  Validator.bigDecimal(scanner);
+		BigDecimal x = Validator.bigDecimal(scanner);
 
 		System.out.println("Unesite Y geo tocku");
 		BigDecimal y = Validator.bigDecimal(scanner);
