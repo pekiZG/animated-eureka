@@ -20,16 +20,16 @@ public class SenzorTemperature extends Senzor {
 		return "Komponenta: " + this.nazivElektronickeKomponente + ", vrijednost: " + super.getVrijednost() + " "
 				+ super.getMjernaJedinica();
 	}
-	
+
 	public void generirajVrijednost() throws VisokaTemperaturaException {
 		Integer randomValue = -50 + new Random().nextInt(100);
 		BigDecimal nasumicniBroj = new BigDecimal(randomValue);
 		super.setVrijednost(nasumicniBroj);
 		if (randomValue > 40) {
-			throw new VisokaTemperaturaException();
+			throw new VisokaTemperaturaException("Temperatura od " + randomValue + "°C je previsoka");
 		}
 		if (randomValue < -10) {
-			throw new NiskaTemperaturaException();
+			throw new NiskaTemperaturaException("Temperatura od " + randomValue + "°C je preniska");
 		}
 	}
 

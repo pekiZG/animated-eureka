@@ -13,13 +13,18 @@ import hr.java.vjezbe.entitet.SenzorTemperature;
 import hr.java.vjezbe.entitet.SenzorVjetra;
 import hr.java.vjezbe.entitet.SenzorVlage;
 import hr.java.vjezbe.entitet.Zupanija;
+import hr.java.vjezbe.iznimke.NiskaTemperaturaException;
 import hr.java.vjezbe.iznimke.VisokaTemperaturaException;
 import hr.java.vjezbe.utilities.Validator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Glavna {
 
 	private static final int KOLICINA_MJERNIH_SENZORA = 3;
 	private static final int KOLICINA_MJERNIH_POSTAJA = 3;
+	private static final Logger logger = LoggerFactory.getLogger(Glavna.class);
 
 	public static void main(String[] args) {
 
@@ -73,6 +78,10 @@ public class Glavna {
 							((SenzorTemperature) senzor).generirajVrijednost();
 						} catch (VisokaTemperaturaException e) {
 							System.out.println("Pogresna temperatura postaje " + mjernePostaje[i].getNaziv());
+							logger.error(e.getMessage());
+						} catch (NiskaTemperaturaException e) {
+							System.out.println("Pogresna temperatura postaje " + mjernePostaje[i].getNaziv());
+							logger.error(e.getMessage());
 						}
 					}
 				}
