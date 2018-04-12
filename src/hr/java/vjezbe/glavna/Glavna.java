@@ -13,6 +13,7 @@ import hr.java.vjezbe.entitet.SenzorTemperature;
 import hr.java.vjezbe.entitet.SenzorVjetra;
 import hr.java.vjezbe.entitet.SenzorVlage;
 import hr.java.vjezbe.entitet.Zupanija;
+import hr.java.vjezbe.utilities.Validator;
 
 public class Glavna {
 
@@ -64,12 +65,10 @@ public class Glavna {
 	private static GeografskaTocka kreirajGeografskuTocku(Scanner scanner) {
 
 		System.out.println("Unesite X geo tocku");
-		BigDecimal x = new BigDecimal(scanner.nextLine().replaceAll(",", "."));
-		// scanner.nextLine();
+		BigDecimal x =  Validator.bigDecimal(scanner);
 
 		System.out.println("Unesite Y geo tocku");
-		BigDecimal y = new BigDecimal(scanner.nextLine().replaceAll(",", "."));
-		// scanner.nextLine();
+		BigDecimal y = Validator.bigDecimal(scanner);
 
 		return new GeografskaTocka(x, y);
 	}
@@ -87,8 +86,7 @@ public class Glavna {
 				mjesto, geografskaTocka, senzori);
 
 		System.out.println("Unesi visinu radio sondažne mjerne postaje:");
-		Integer visinaNaKojojLebdi = scanner.nextInt();
-		scanner.nextLine();
+		Integer visinaNaKojojLebdi = Validator.integer(scanner);
 		radioSondaznaMjernaPostaja.podesiVisinuPostaje(visinaNaKojojLebdi);
 
 		return radioSondaznaMjernaPostaja;
@@ -164,7 +162,7 @@ public class Glavna {
 		String nazivDrzave = scanner.nextLine();
 
 		System.out.println("Unesite povrsinu drzave:");
-		BigDecimal povrsina = new BigDecimal(scanner.nextLine().replaceAll(",", "."));
+		BigDecimal povrsina = Validator.bigDecimal(scanner);
 		// scanner.nextLine();
 
 		return new Drzava(nazivDrzave, povrsina);
